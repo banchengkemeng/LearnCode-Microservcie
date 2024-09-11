@@ -52,7 +52,11 @@
 
 
 
+![image-20240911214955623](https://code-pictures.oss-cn-beijing.aliyuncs.com/image-20240911214955623.png)
 
+
+
+![image-20240911214900391](https://code-pictures.oss-cn-beijing.aliyuncs.com/image-20240911214900391.png)
 
 如果以 RESTful 方式接入代码沙箱，接口调用示例:
 
