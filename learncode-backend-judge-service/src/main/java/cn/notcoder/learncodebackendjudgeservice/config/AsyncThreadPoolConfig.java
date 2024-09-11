@@ -1,4 +1,4 @@
-package cn.notcoder.learncodebackendcommon.config;
+package cn.notcoder.learncodebackendjudgeservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
