@@ -178,6 +178,9 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
             });
         }
 
+        // 按创建时间排序
+        questionQueryWrapper.orderByDesc("createTime");
+
         return questionQueryWrapper;
     }
 

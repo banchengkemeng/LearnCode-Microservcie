@@ -13,6 +13,7 @@ import cn.notcoder.learncodebackendmodel.model.entity.User;
 import cn.notcoder.learncodebackendmodel.model.enums.QuestionSubmitLangEnum;
 import cn.notcoder.learncodebackendmodel.model.vo.QuestionAdminVO;
 import cn.notcoder.learncodebackendmodel.model.vo.QuestionVO;
+import cn.notcoder.learncodebackendquestionservice.service.QuestionService;
 import cn.notcoder.learncodebackendquestionservice.service.impl.QuestionServiceImpl;
 import cn.notcoder.learncodebackendserviceclient.service.JudgeFeignClient;
 import cn.notcoder.learncodebackendserviceclient.service.UserFeignClient;
@@ -35,7 +36,7 @@ import static cn.notcoder.learncodebackendcommon.constant.UserConstant.USER_LOGI
 public class QuestionController {
 
     @Resource
-    private QuestionServiceImpl questionService;
+    private QuestionService questionService;
 
     @Resource
     private UserFeignClient userFeignClient;

@@ -135,6 +135,9 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         questionSubmitQueryWrapper.eq(status != null, "status", status);
         questionSubmitQueryWrapper.like(StringUtils.isNotBlank(message), "judgeInfo", message);
 
+        // 按创建时间排序
+        questionSubmitQueryWrapper.orderByDesc("createTime");
+
         return questionSubmitQueryWrapper;
     }
 
