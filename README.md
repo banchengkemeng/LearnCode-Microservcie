@@ -7,7 +7,10 @@
 # 技术选型
 
 - Spring Cloud Alibaba
-- Nacos
+  - Spring Cloud Gateway
+  - Nacos
+  - OpenFeign
+  - Spring Session
 - Redis
 - MySQL
 - Mybaits Plus
