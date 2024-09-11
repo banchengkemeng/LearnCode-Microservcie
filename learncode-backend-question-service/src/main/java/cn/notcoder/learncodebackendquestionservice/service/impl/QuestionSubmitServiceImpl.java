@@ -7,6 +7,7 @@ import cn.notcoder.learncodebackendcommon.exception.ThrowUtils;
 import cn.notcoder.learncodebackendmodel.model.dto.question.JudgeConfig;
 import cn.notcoder.learncodebackendmodel.model.dto.questionsubmit.QuestionSubmitQueryRequest;
 import cn.notcoder.learncodebackendmodel.model.dto.questionsubmit.QuestionSubmitRequest;
+import cn.notcoder.learncodebackendmodel.model.entity.Question;
 import cn.notcoder.learncodebackendmodel.model.entity.QuestionSubmit;
 import cn.notcoder.learncodebackendmodel.model.entity.User;
 import cn.notcoder.learncodebackendmodel.model.enums.QuestionSubmitLangEnum;
@@ -27,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -49,7 +51,6 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         // 编程语言不存在则直接报错
         String lang = questionSubmitRequest.getLang();
         ThrowUtils.throwIf(!checkLang(lang), ErrorCode.OPERATION_ERROR, "编程语言不存在");
-
 
         Long questionId = questionSubmitRequest.getQuestionId();
         QuestionAdminVO questionAdminVOById = questionService.getQuestionAdminVOById(questionId);
@@ -78,6 +79,8 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         judgeFeignClient.judgeQuestion(judgeRequest);
 
         ThrowUtils.throwIf(!save, ErrorCode.OPERATION_ERROR);
+
+        updateSubmitNum(questionId);
         return questionSubmit.getId();
     }
 
@@ -106,6 +109,24 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         QueryWrapper<QuestionSubmit> questionSubmitQueryWrapper = new QueryWrapper<>();
         questionSubmitQueryWrapper.in("questionId", questionIds);
         return this.remove(questionSubmitQueryWrapper);
+    }
+
+    @Override
+    public Boolean updateSubmitNum(Long questionId) {
+        Question question = questionService.getById(questionId);
+        question.setSubmitNum(
+                Optional.of(question.getSubmitNum()).orElse(0) + 1
+        );
+        return questionService.updateById(question);
+    }
+
+    @Override
+    public Boolean updateAcceptedNum(Long questionId) {
+        Question question = questionService.getById(questionId);
+        question.setAcceptedNum(
+                Optional.of(question.getAcceptedNum()).orElse(0) + 1
+        );
+        return questionService.updateById(question);
     }
 
 

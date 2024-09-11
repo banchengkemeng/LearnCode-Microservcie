@@ -18,4 +18,6 @@ public interface QuestionSubmitService extends IService<QuestionSubmit> {
     QuestionSubmitVO getQuestionSubmitVOById(Long id);
     Page<QuestionSubmitVO> getQuestionSubmitVOPage(QuestionSubmitQueryRequest questionSubmitQueryRequest);
     Boolean deleteByQuestionIds(List<Long> questionIds);
+    Boolean updateSubmitNum(Long questionId);
+    Boolean updateAcceptedNum(Long questionId);
 }

@@ -127,12 +127,15 @@ public class JudgeServiceImpl implements JudgeService {
                 }
             }
 
+
+            // 答案正确
             JudgeInfo judgeInfo = JudgeInfo.finished(questionId, JudgeInfoMessage.ACCEPTED, message);
 
             this.updateJudgeInfoToDatabase(
                     QuestionSubmit.success(questionSubmitId, judgeInfo)
             );
 
+            questionSubmitFeignClient.updateAcceptedNum(Long.valueOf(questionId));
             return AsyncResult.forValue(judgeInfo);
         } catch (Exception e) {
             log.error(e.toString());
