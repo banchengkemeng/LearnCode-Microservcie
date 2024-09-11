@@ -52,4 +52,8 @@
 
 
 
+
+
+如果以 RESTful 方式接入代码沙箱，接口调用示例:
+
 ![image-20240905184359148](https://code-pictures.oss-cn-beijing.aliyuncs.com/image-20240905184359148.png)
